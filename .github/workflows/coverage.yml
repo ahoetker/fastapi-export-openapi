@@ -45,7 +45,16 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
       #----------------------------------------------
-      #    run test suite
+      #    run test suite and output coverage file   
       #----------------------------------------------
-      - name: Test with pytest
-        run: poetry run pytest
+    - name: Test with pytest
+      run: poetry run pytest --cov=<project-dir> --cov-report=xml
+      #----------------------------------------------
+      #             upload coverage stats              
+      # (requires CODECOV_TOKEN in repository secrets)   
+      #----------------------------------------------
+    - name: Upload coverage
+      uses: codecov/codecov-action@v1
+      with:
+        file: ./coverage.xml
+        fail_ci_if_error: true
