@@ -3,11 +3,10 @@ import typer
 import importlib
 import logging
 from pathlib import Path
-from typing import List, Optional
+from typing import List
 
 from fastapi_export_openapi.export_openapi import (
     OutputTypeEnum,
-    install_apt_packages,
     write_json_openapi,
     write_yaml_openapi,
 )
@@ -23,14 +22,10 @@ def export_openapi(
     output_type: OutputTypeEnum = OutputTypeEnum.json,
     json_output_path: Path = Path("openapi.json"),
     yaml_output_path: Path = Path("openapi.yaml"),
-    apt_package: Optional[List[str]] = typer.Option(None),
 ) -> None:
     """
     Write the application's OpenAPI schema to disk.
     """
-
-    if len(apt_package) > 0:
-        install_apt_packages(apt_package)
 
     app = importlib.import_module(fastapi_app_module).app
     openapi = app.openapi()
