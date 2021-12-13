@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fastapi_export_openapi"
-version = "0.1.1"
+version = "0.1.2"
 description = "GitHub Action to export OpenAPI schema from FastAPI apps."
 authors = ["Andrew Hoetker <andrew@hoetker.engineer>"]
 
@@ -9,9 +9,9 @@ fastapi-export-openapi = "fastapi_export_openapi.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-PyYAML = "^5.4.1"
+PyYAML = "^6.0"
 pydantic = "^1.8.2"
-typer = "^0.3.2"
+typer = "^0.4.0"
 
 [tool.poetry.dev-dependencies]
 black = "^21.6b0"
